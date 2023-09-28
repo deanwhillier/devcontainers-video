@@ -1,20 +1,29 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/universal
 {
-	"name": "Default Linux Universal",
+	"name": "Customized Default Linux Universal",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/universal:2-linux",
-
-	"runArgs": ["--platform=linux/amd64" ],
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	
+	// "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+	// "runArgs": ["--platform=linux/amd64" ],
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/prisma:2": {},
+		"ghcr.io/itsmechlark/features/postgresql:1": {},
+		"ghcr.io/itsmechlark/features/redis-server:1": {}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3010]
+	"forwardPorts": [
+		3010
+	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
+	"postCreateCommand": "npm i"
 
 	// Configure tool-specific properties.
 	// "customizations": {},
